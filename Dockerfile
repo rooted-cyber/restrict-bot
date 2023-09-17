@@ -1,9 +1,26 @@
+
 FROM python:3.9.2-slim-buster
+
 RUN mkdir /app && chmod 777 /app
 
-WORKDIR /app
-ENV DEBIAN_FRONTEND=noninteractive
-RUN apt -qq update && apt -qq install -y git python3 python3-pip ffmpeg git
-RUN git clone https://github.com/create-fork-repos/SaveRestrictedContentBot;cd Save*;git pull;cat main/*init*
-RUN cd Save*Bot;pip3 install --no-cache-dir -r requirements.txt
-RUN cd Save*;bash bash.sh
+# Changed the package manager command from 'apt' to 'apt-get'
+# Also, 'python3' package is already included in the base image, so it doesn't need to be installed separately
+# Removed 'python3-pip' package installation as pip is already included in the base image
+RUN apt-get -qq update && apt-get -qq install -y git ffmpeg
+
+# Changed the working directory to 'SaveRestrictedContentBot'
+WORKDIR /app/SaveRestrictedContentBot
+
+# Removed the semi-colons from the 'git clone' and 'git pull' commands
+RUN git clone https://github.com/create-fork-repos/SaveRestrictedContentBot && \
+    cd SaveRestrictedContentBot && \
+    git pull && \
+    cat main/*init*
+
+# Fixed the typo in the directory name from 'Save*Bot' to 'SaveRestrictedContentBot'
+# Also removed the unnecessary 'cd Save*' command
+RUN cd SaveRestrictedContentBot && \
+    pip install --no-cache-dir -r requirements.txt
+
+# Removed the unnecessary 'cd Save*' command
+RUN bash bash.sh
