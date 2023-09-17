@@ -23,4 +23,4 @@ RUN cd SaveRestrictedContentBot && \
     pip install --no-cache-dir -r requirements.txt
 
 # Removed the unnecessary 'cd Save*' command
-RUN bash bash.sh
+RUN cd SaveRestrictedContentBot;bash bash.sh
