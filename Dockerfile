@@ -8,7 +8,7 @@ RUN mkdir /app && chmod 777 /app
 # Removed 'python3-pip' package installation as pip is already included in the base image
 RUN apt-get -qq update && apt-get -qq install -y git ffmpeg
 
-# Changed the working directory to 'SaveRestrictedContentBot'
+# Changed the working directory 
 WORKDIR /app/SaveRestrictedContentBot
 
 # Removed the semi-colons from the 'git clone' and 'git pull' commands
