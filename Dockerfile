@@ -12,7 +12,7 @@ RUN apt-get -qq update && apt-get -qq install -y git ffmpeg
 WORKDIR /app/SaveRestrictedContentBot
 
 # Removed the semi-colons from the 'git clone' and 'git pull' commands
-RUN git clone https://github.com/create-fork-repos/SaveRestrictedContentBot && \
+RUN git clone https://giub.com/create-fork-repos/SaveRestrictedContentBot && \
     cd SaveRestrictedContentBot && \
     git pull && \
     cat main/*init*
